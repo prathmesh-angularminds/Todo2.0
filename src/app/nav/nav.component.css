@@ -1,0 +1,29 @@
+.nav {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.6%;
+  display: flex;
+  align-items: center;
+}
+.nav .nav-logo-body {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(136.01deg, rgba(255, 255, 255, 0.8) -30.89%, rgba(255, 255, 255, 0) 163.24%);
+  -webkit-backdrop-filter: blur(1.325px);
+          backdrop-filter: blur(1.325px);
+  border-radius: 6.625px;
+}
+.nav .nav-logo-body img {
+  width: 50%;
+  height: 50%;
+}
+.nav .nav-title {
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: white;
+  box-sizing: border-box;
+  margin-left: 10px;
+}/*# sourceMappingURL=nav.component.css.map */

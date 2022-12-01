@@ -1,0 +1,38 @@
+.comp-task {
+  width: 100%;
+  height: 92vh;
+  box-sizing: border-box;
+  padding: 1% 2%;
+  display: flex;
+  flex-direction: column;
+}
+.comp-task .comp-task-title-delete-block {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0.5%;
+}
+.comp-task .comp-task-title-delete-block .comp-task-title {
+  font-size: 0.9rem;
+  color: white;
+  font-weight: 700;
+}
+.comp-task .comp-task-title-delete-block .comp-task-delete-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(1.325px);
+          backdrop-filter: blur(1.325px);
+  border-radius: 6.625px;
+  border: 1px solid white;
+  background: linear-gradient(136.01deg, rgba(255, 255, 255, 0.8) -30.89%, rgba(255, 255, 255, 0) 163.24%);
+}
+.comp-task .comp-task-title-delete-block .comp-task-delete-btn img {
+  width: 55%;
+  height: 55%;
+}/*# sourceMappingURL=complete-task.component.css.map */

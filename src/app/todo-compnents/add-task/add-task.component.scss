@@ -1,0 +1,210 @@
+.add-task {
+  width: 100%;
+  height: 92vh;
+
+  box-sizing: border-box;
+  padding: 1% 2%;
+
+  display: flex;
+  flex-direction: column;
+
+  .add-task-title-delete-block {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 1.2% 0.5%;
+
+    .add-task-title {
+      font-size: 0.9rem;
+      color: white;
+      font-weight: 700;
+    }
+  }
+
+  .add-task-card-block {
+    width: 100%;
+    height: 85vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 1.2% 0.5%;
+
+    .add-task-main-card {
+      width: 80%;
+      box-sizing: border-box;
+      padding: 2%;
+
+      font-family: "Montserrat", sans-serif !important;
+      background: linear-gradient(
+        124.02deg,
+        rgba(255, 255, 255, 0.5) -59.47%,
+        rgba(255, 255, 255, 0) 101.61%
+      );
+      border-radius: 10px;
+      border: 0.5px solid white;
+
+      .inputfield-block {
+        .inputfield {
+          background-color: transparent !important;
+          box-shadow: none !important;
+          outline: none !important;
+          border: 0.5px solid white;
+
+          color: white;
+        }
+
+        .inputfield-label {
+          color: white !important;
+          font-weight: 600;
+        }
+      }
+
+      .textarea-block {
+        .textarea {
+          background-color: transparent !important;
+          box-shadow: none !important;
+          outline: none !important;
+          border: 0.5px solid white;
+
+          color: white;
+        }
+
+        .textarea-label {
+          color: white !important;
+          font-weight: 600;
+        }
+      }
+
+      .add-time-complete-block {
+        width: 100%;
+
+        display: flex;
+        justify-content: space-between;
+        box-sizing: border-box;
+        margin: 20px 0px;
+
+        .add-task-time-block {
+          width: 50%;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+
+          .start-time-block {
+            width: 40%;
+
+            .start-time-title {
+              box-sizing: border-box;
+              margin: 8px 0px;
+
+              color: white;
+              font-weight: 700;
+            }
+
+            .times {
+              width: 95%;
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+
+              .add-hrs-block,
+              .add-mins-block {
+                width: 35%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                .hrs,
+                .mins {
+                  width: 50px;
+                  height: 50px;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  box-sizing: border-box;
+                  padding: 10px;
+                  background: linear-gradient(
+                    124.02deg,
+                    rgba(255, 255, 255, 0.5) -59.47%,
+                    rgba(255, 255, 255, 0) 101.61%
+                  );
+                  border: 0.5px solid white;
+                  color: white;
+                  border-radius: 5px;
+                }
+
+                .inc-btn, .dec-btn {
+
+                    cursor: pointer;
+                }
+              }
+            
+              .am-pm-block {
+
+                height: 100%;
+                display: flex;
+                color: white;
+                flex-direction: column;
+
+                .time-zone {
+
+                    box-sizing: border-box;
+                    margin: 8px 0px;
+                }
+              }
+            }
+          }
+        }
+
+        .complete-btns {
+
+            width: 10%;
+            display: flex;
+            justify-content: space-between;
+            align-self: flex-end;
+        
+
+            .important1-btn, .completed1-btn, .active {
+
+                width: 40px;
+                height: 40px;
+                border: 0.5px solid white;
+                background: linear-gradient(124.02deg, rgba(255, 255, 255, 0.5) -59.47%, rgba(255, 255, 255, 0) 101.61%);
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 4px;
+                cursor: pointer;
+
+
+                img {
+
+                    width: 60%;
+                    height: 60%;
+
+                    display: flex;
+                    align-self: center;
+                    justify-self: center;
+                }
+            }
+
+            .important1-btn {
+
+              background: transparent;
+            }
+
+            .active {
+              background: linear-gradient(124.02deg, rgba(255, 255, 255, 0.5) -59.47%, rgba(255, 255, 255, 0) 101.61%);
+
+            }
+        }
+      }
+    }
+  }
+}

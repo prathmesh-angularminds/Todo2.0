@@ -1,0 +1,103 @@
+<div class="add-task">
+  <div class="add-task-title-delete-block">
+    <div class="add-task-title">
+      {{ "Add / Update Task" | uppercase }}
+    </div>
+  </div>
+  <div class="add-task-card-block">
+    <div class="add-task-main-card">
+      <form [formGroup]="formData">
+        <div class="form-floating mb-3 inputfield-block">
+          <input
+            type="email"
+            class="form-control inputfield"
+            id="floatingInput"
+            placeholder=""
+            formControlName="taskTitle"
+          />
+          <label for="floatingInput" class="inputfield-label"
+            >Enter Task Title</label
+          >
+        </div>
+
+        <div class="form-floating textarea-block">
+          <textarea
+            class="form-control textarea"
+            placeholder=""
+            id="floatingTextarea2"
+            style="height: 100px"
+            formControlName="taskDesc"
+          ></textarea>
+          <label for="floatingTextarea2" class="textarea-label"
+            >Enter Task Description</label
+          >
+        </div>
+      </form>
+
+      <div class="add-time-complete-block">
+        <div class="add-task-time-block">
+          <div class="start-time-block">
+            <div class="start-time-title">Set Task Start Timing</div>
+            <div class="times">
+              <div class="add-hrs-block">
+                <div class="inc-btn" (click)="cntChangeClicked('start','hr','inc')">
+                  <img src="../../../assets/up-btn.svg" />
+                </div>
+                <div class="hrs">{{startTimeHr}}</div>
+                <div class="dec-btn" (click)="cntChangeClicked('start','hr','dec')">
+                  <img src="../../../assets/down-btn.svg" />
+                </div>
+              </div>
+              <div class="add-mins-block">
+                <div class="inc-btn" (click)="cntChangeClicked('start','min','inc')">
+                  <img src="../../../assets/up-btn.svg" />
+                </div>
+                <div class="mins">{{startTimeMin}}</div>
+                <div class="dec-btn" (click)="cntChangeClicked('start','min','dec')">
+                  <img src="../../../assets/down-btn.svg" />
+                </div>
+              </div>
+              <div class="am-pm-block">
+                <div class="time-zone"><input type="radio" />  AM</div>
+                <div class="time-zone"><input type="radio" />  PM</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="start-time-block">
+            <div class="start-time-title">Set Task End Timing</div>
+            <div class="times">
+              <div class="add-hrs-block">
+                <div class="inc-btn" (click)="cntChangeClicked('end','hr','inc')">
+                  <img src="../../../assets/up-btn.svg" />
+                </div>
+                <div class="hrs">{{endTimeHr}}</div>
+                <div class="dec-btn" (click)="cntChangeClicked('end','hr','dec')">
+                  <img src="../../../assets/down-btn.svg" />
+                </div>
+              </div>
+              <div class="add-mins-block">
+                <div class="inc-btn" (click)="cntChangeClicked('end','min','inc')">
+                  <img src="../../../assets/up-btn.svg" />
+                </div>
+                <div class="mins">{{endTimeMin}}</div>
+                <div class="dec-btn" (click)="cntChangeClicked('end','min','dec')">
+                  <img src="../../../assets/down-btn.svg" />
+                </div>
+              </div>
+              <div class="am-pm-block">
+                <div class="time-zone"><input type="radio" />  AM</div>
+                <div class="time-zone"><input type="radio" />  PM</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="complete-btns">
+            <div title="Add as Important" [ngClass]="imp"  (click)="addImportant()"><img src="../../../assets/imp-btn-img.svg"/></div>
+            <div (click)="onFormSubmit()"  title="Add Task" class="completed1-btn"><img src="../../../assets/completed-btn-img.svg"/></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

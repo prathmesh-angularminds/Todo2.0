@@ -1,0 +1,26 @@
+* {
+
+    padding: 0px;
+    margin: 0px;
+}
+
+.todoser {
+
+    width: 100vw;
+    height: 100vh;
+    
+    background-image:  radial-gradient(40.27% 58.3% at 85.9% 66.89%, rgba(224, 0, 0, 0.5) 0%, rgba(224, 0, 0, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, radial-gradient(86.04% 170.15% at 86.04% 60.69%, rgba(36, 0, 118, 0.585207) 1.59%, #240076 84.61%) ;
+
+    .todoser-bgblur {
+
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+
+        background: rgba(255, 255, 255, 0.15);
+    }
+}
+

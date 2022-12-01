@@ -1,0 +1,23 @@
+<div class="imp-task">
+  <div class="imp-task-title-delete-block">
+    <div class="imp-task-title">
+      {{ "Important Task" | uppercase }}
+    </div>
+    <div class="imp-task-delete-btn">
+      <img src="../../../assets/delete-btn-img.svg" alt="delete-btn" />
+    </div>
+  </div>
+
+  <div class="imp-task-search-block">
+    <input placeholder="Search by task title" />
+  </div>
+  <div class="imp-task-list">
+    <div class="imp-task-card" *ngFor="let cards of impTask">
+      {{cards | json}}
+      <div>
+        <!-- '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' -->
+        
+      </div>
+    </div>
+  </div>
+</div>

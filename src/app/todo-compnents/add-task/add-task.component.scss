@@ -80,6 +80,13 @@
         }
       }
 
+      .task-title-must {
+
+        color: white;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+      }
+
       .add-time-complete-block {
         width: 100%;
 
@@ -204,6 +211,11 @@
 
             }
         }
+      }
+    
+      .timing-msg {
+
+        color: white
       }
     }
   }

@@ -14,12 +14,22 @@
             id="floatingInput"
             placeholder=""
             formControlName="taskTitle"
+            maxlength="20"
           />
           <label for="floatingInput" class="inputfield-label"
             >Enter Task Title</label
           >
         </div>
-
+        <!-- Task Title is not given -->
+        <div
+          class="task-title-must"
+          *ngIf="
+            formData.get('taskTitle')?.touched &&
+            formData.get('taskTitle')?.hasError('required')
+          "
+        >
+          Task Title must be given
+        </div>
         <div class="form-floating textarea-block">
           <textarea
             class="form-control textarea"
@@ -27,6 +37,7 @@
             id="floatingTextarea2"
             style="height: 100px"
             formControlName="taskDesc"
+            maxlength="150"
           ></textarea>
           <label for="floatingTextarea2" class="textarea-label"
             >Enter Task Description</label
@@ -40,26 +51,54 @@
             <div class="start-time-title">Set Task Start Timing</div>
             <div class="times">
               <div class="add-hrs-block">
-                <div class="inc-btn" (click)="cntChangeClicked('start','hr','inc')">
+                <div
+                  class="inc-btn"
+                  (click)="cntChangeClicked('start', 'hr', 'inc')"
+                >
                   <img src="../../../assets/up-btn.svg" />
                 </div>
-                <div class="hrs">{{startTimeHr}}</div>
-                <div class="dec-btn" (click)="cntChangeClicked('start','hr','dec')">
+                <div class="hrs">{{ startTimeHr }}</div>
+                <div
+                  class="dec-btn"
+                  (click)="cntChangeClicked('start', 'hr', 'dec')"
+                >
                   <img src="../../../assets/down-btn.svg" />
                 </div>
               </div>
               <div class="add-mins-block">
-                <div class="inc-btn" (click)="cntChangeClicked('start','min','inc')">
+                <div
+                  class="inc-btn"
+                  (click)="cntChangeClicked('start', 'min', 'inc')"
+                >
                   <img src="../../../assets/up-btn.svg" />
                 </div>
-                <div class="mins">{{startTimeMin}}</div>
-                <div class="dec-btn" (click)="cntChangeClicked('start','min','dec')">
+                <div class="mins">{{ startTimeMin }}</div>
+                <div
+                  class="dec-btn"
+                  (click)="cntChangeClicked('start', 'min', 'dec')"
+                >
                   <img src="../../../assets/down-btn.svg" />
                 </div>
               </div>
               <div class="am-pm-block">
-                <div class="time-zone"><input type="radio" />  AM</div>
-                <div class="time-zone"><input type="radio" />  PM</div>
+                <div class="time-zone">
+                  <input
+                    name="zone1"
+                    type="radio"
+                    style="accent-color: white"
+                    (click)="setZone('start', 'AM')"
+                  />
+                  AM
+                </div>
+                <div class="time-zone">
+                  <input
+                    name="zone1"
+                    type="radio"
+                    style="accent-color: white"
+                    (click)="setZone('start', 'PM')"
+                  />
+                  PM
+                </div>
               </div>
             </div>
           </div>
@@ -68,36 +107,105 @@
             <div class="start-time-title">Set Task End Timing</div>
             <div class="times">
               <div class="add-hrs-block">
-                <div class="inc-btn" (click)="cntChangeClicked('end','hr','inc')">
+                <div
+                  class="inc-btn"
+                  (click)="cntChangeClicked('end', 'hr', 'inc')"
+                >
                   <img src="../../../assets/up-btn.svg" />
                 </div>
-                <div class="hrs">{{endTimeHr}}</div>
-                <div class="dec-btn" (click)="cntChangeClicked('end','hr','dec')">
+                <div class="hrs">{{ endTimeHr }}</div>
+                <div
+                  class="dec-btn"
+                  (click)="cntChangeClicked('end', 'hr', 'dec')"
+                >
                   <img src="../../../assets/down-btn.svg" />
                 </div>
               </div>
               <div class="add-mins-block">
-                <div class="inc-btn" (click)="cntChangeClicked('end','min','inc')">
+                <div
+                  class="inc-btn"
+                  (click)="cntChangeClicked('end', 'min', 'inc')"
+                >
                   <img src="../../../assets/up-btn.svg" />
                 </div>
-                <div class="mins">{{endTimeMin}}</div>
-                <div class="dec-btn" (click)="cntChangeClicked('end','min','dec')">
+                <div class="mins">{{ endTimeMin }}</div>
+                <div
+                  class="dec-btn"
+                  (click)="cntChangeClicked('end', 'min', 'dec')"
+                >
                   <img src="../../../assets/down-btn.svg" />
                 </div>
               </div>
               <div class="am-pm-block">
-                <div class="time-zone"><input type="radio" />  AM</div>
-                <div class="time-zone"><input type="radio" />  PM</div>
+                <div class="time-zone">
+                  <input
+                    name="zone2"
+                    type="radio"
+                    style="accent-color: white"
+                    (click)="setZone('end', 'AM')"
+                  />
+                  AM
+                </div>
+                <div class="time-zone">
+                  <input
+                    name="zone2"
+                    type="radio"
+                    style="accent-color: white"
+                    (click)="setZone('end', 'PM')"
+                  />
+                  PM
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <div class="complete-btns">
-            <div title="Add as Important" [ngClass]="imp"  (click)="addImportant()"><img src="../../../assets/imp-btn-img.svg"/></div>
-            <div (click)="onFormSubmit()"  title="Add Task" class="completed1-btn"><img src="../../../assets/completed-btn-img.svg"/></div>
+          <div
+            title="Add as Important"
+            [ngClass]="imp"
+            (click)="addImportant()"
+          >
+            <img src="../../../assets/imp-btn-img.svg" />
+          </div>
+          <div (click)="onFormSubmit()" title="Add Task" class="completed1-btn isDisable">
+            <img src="../../../assets/completed-btn-img.svg" />
+          </div>
         </div>
       </div>
+
+      <!-- Time Messages Block -->
+      <div
+        class="timing-msg"
+        style="color: white"
+        *ngIf="
+          parseIntDemo(currentHr) > parseIntDemo(startTimeHr) ||
+          (currentDate.getHours() > 12 && startZone === 'AM') ||
+          (currentDate.getHours() <= 12 && startZone === 'PM') ||
+          currentDate.getMinutes() > parseIntDemo(startTimeMin)
+        "
+      >
+        Task Starting Hrs should be more than Current time
+      </div>
+      <div
+        class="timing-msg"
+        style="color: white"
+        *ngIf="
+          parseIntDemo(currentHr) > parseIntDemo(endTimeHr) ||
+          (currentDate.getHours() > 12 && endZone === 'AM') ||
+          (currentDate.getHours() <= 12 && endZone === 'PM') ||
+          currentDate.getMinutes() > parseIntDemo(endTimeMin)
+        "
+      >
+        Task Ending Time should be more than Current time
+      </div>
+
+      <div
+        style="color: white"
+        *ngIf="parseIntDemo(startTimeHr) > parseIntDemo(endTimeHr)"
+      >
+        Task Starting time should be more than Task Ending Time
+    </div>
     </div>
   </div>
 </div>

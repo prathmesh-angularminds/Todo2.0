@@ -11,6 +11,8 @@ export class TodoserviceService {
   completedTask: object[];
   deletedTask: object[];
 
+  
+
   constructor() {
     if (this.lStorage.getItem('normalTask') === null) {
       this.lStorage.setItem('normalTask', JSON.stringify([]));
@@ -41,10 +43,35 @@ export class TodoserviceService {
     }
   }
 
+  sortData(task: any[],newTask: any) {
+
+    var demo: (any)[] = [];
+    var hrs1: number;
+    var hrs2: number;
+
+    if(task.length === 0) {
+      task.push(newTask);
+    } else {
+
+      for(var i = 0; i < task.length; i++) {
+        var demoTask = task[i];
+        hrs1 = parseInt(demoTask.startTime.charAt(0) + "" +demoTask.startTime.charAt(0))
+        hrs2 = parseInt(newTask.startTime.charAt(0) + "" +newTask.startTime.charAt(0)) 
+        
+        if(hrs1 > hrs2) {
+          demoTask.push(task)  
+        }
+
+      }
+    }
+  }
+
   addNewTask(newTask: any) {
     this.newTask = newTask;
     console.log(newTask.isImp);
+    
     if (newTask.isImp) {
+      //this.sortData(this.impTask,newTask);
       this.impTask.push(newTask);
 
       this.lStorage.setItem('impTask', JSON.stringify(this.impTask));
@@ -52,11 +79,29 @@ export class TodoserviceService {
 
       console.log(this.impTask);
     } else {
+      //this.sortData(this.impTask,newTask);
       this.normalTask.push(newTask);
       this.lStorage.setItem('normalTask', JSON.stringify(this.normalTask));
       this.normalTask = JSON.parse(this.lStorage.getItem('normalTask'));
 
       console.log(this.normalTask);
     }
+  }
+
+  deleteTask(task: (object)[],arrayType: string) {
+    
+    if(arrayType === "delete") {
+      this.lStorage.setItem('impTask',JSON.stringify(task));
+      this.impTask = JSON.parse(this.lStorage.getItem('impTask'));
+    }
+  }
+
+  allTaskDelete(arrayType: string) {
+
+    if(arrayType === "delete") {
+      this.lStorage.setItem('impTask',JSON.stringify([]));
+      this.impTask = JSON.parse(this.lStorage.getItem('impTask'));
+    }
+
   }
 }

@@ -3,20 +3,38 @@
     <div class="imp-task-title">
       {{ "Important Task" | uppercase }}
     </div>
-    <div class="imp-task-delete-btn">
+    <div class="imp-task-delete-btn" (click)="deleteAll()">
       <img src="../../../assets/delete-btn-img.svg" alt="delete-btn" />
     </div>
   </div>
 
-  <div class="imp-task-search-block">
+  <!-- <div class="imp-task-search-block">
     <input placeholder="Search by task title" />
-  </div>
+  </div> -->
   <div class="imp-task-list">
-    <div class="imp-task-card" *ngFor="let cards of impTask">
-      {{cards | json}}
-      <div>
-        <!-- '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' -->
+    <div class="imp-task-card" *ngFor="let cards of impTask; let i = index">
+      <div class="task-card-title">
+        <div>{{ cards["taskTitle"] }}</div>
+        <img src="../../../assets/imp-btn-img.svg" />
         
+      </div>
+      <div class="task-card-desc">{{ cards["taskDesc"] }}</div>
+      <div class="task-card-time">
+        <div>From-{{ cards["startTime"] }}</div>
+        <div>Till-{{ cards["endTime"] }}</div>
+      </div>
+      <div class="task-card-btns">
+        <div class="optional-div" *ngIf="cards['optionBtn']">
+          <a style="width: 100%; text-decoration: none;" [routerLink]="'/add-task'" (onclick)="updateTask()"><div class="">Update Task</div></a>
+          <div class="" (click)="onImpTaskDelete(i)">Delete Task</div>
+        </div>
+        <div
+          class="task-card-option-btn"
+          style="cursor: pointer"
+          (click)="showOption(i)"
+        >
+          <img src="../../../assets/option-btn.svg" />
+        </div>
       </div>
     </div>
   </div>

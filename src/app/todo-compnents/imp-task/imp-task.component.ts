@@ -8,7 +8,7 @@ import { TodoserviceService } from 'src/app/services/todoservice.service';
 })
 export class ImpTaskComponent implements OnInit {
 
-  impTask: (object)[];
+  impTask: (any)[];
   constructor(private service: TodoserviceService) { 
     this.impTask = service.impTask;
   }
@@ -16,4 +16,31 @@ export class ImpTaskComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // form showing option div on page
+  showOption(index: number) {
+
+    for(var i = 0; i < this.impTask.length; i++) {
+
+      if(index !== i)
+        this.impTask[i].optionBtn = false;
+    }
+    
+    this.impTask[index].optionBtn = !this.impTask[index].optionBtn;
+  }
+
+  onImpTaskDelete(index: number) {
+
+    this.impTask.splice(index, 1);
+    this.service.deleteTask(this.impTask,"delete")
+  }
+
+  deleteAll() {
+
+    this.impTask = [];
+    this.service.allTaskDelete("delete");
+  }
+
+  updateTask() {
+    
+  }
 }

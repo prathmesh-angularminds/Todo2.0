@@ -16,9 +16,9 @@ export class AddTaskComponent implements OnInit {
   parseIntDemo = parseInt;
 
   // Time Variable Data
-  startTimeHr: string = this.currentDate.getHours() > 12 ? "0" + (this.currentDate.getHours() - 12)  : "" + (this.currentDate.getHours());;
+  startTimeHr: string = this.currentDate.getHours() > 12 ? "0" + (this.currentDate.getHours() - 12)  : "" + (this.currentDate.getHours());
   startTimeMin: string = this.currentDate.getMinutes() < 10 ? "0" + this.currentDate.getMinutes() : "" +this.currentDate.getMinutes();
-  endTimeHr: string = this.currentDate.getHours() > 12 ? "0" + (this.currentDate.getHours() - 12)  : "" + (this.currentDate.getHours());;
+  endTimeHr: string = this.currentDate.getHours() > 12 ? "0" + (this.currentDate.getHours() - 12)  : "" + (this.currentDate.getHours());
   endTimeMin: string = this.currentDate.getMinutes() < 10 ? "0" + this.currentDate.getMinutes() : "" +this.currentDate.getMinutes();
   startZone: string = "";
   endZone: string = "";

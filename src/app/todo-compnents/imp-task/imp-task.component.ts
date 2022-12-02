@@ -30,14 +30,16 @@ export class ImpTaskComponent implements OnInit {
 
   onImpTaskDelete(index: number) {
 
+    this.impTask[index].optionBtn = false;
+    var deletedTask = this.impTask[index];
     this.impTask.splice(index, 1);
-    this.service.deleteTask(this.impTask,"delete")
+    this.service.deleteTask(this.impTask,"important",deletedTask);
   }
 
   deleteAll() {
 
     this.impTask = [];
-    this.service.allTaskDelete("delete");
+    this.service.allTaskDelete("important");
   }
 
   updateTask() {

@@ -66,6 +66,7 @@ export class TodoserviceService {
     }
   }
 
+  // add new task in normal list or important list
   addNewTask(newTask: any) {
     this.newTask = newTask;
     console.log(newTask.isImp);
@@ -88,19 +89,31 @@ export class TodoserviceService {
     }
   }
 
-  deleteTask(task: (object)[],arrayType: string) {
+
+  // function which deleted specified task from the list
+  deleteTask(task: (object)[],arrayType: string,deletedTask: (object)[]) {
     
-    if(arrayType === "delete") {
+    if(arrayType === "important") {
       this.lStorage.setItem('impTask',JSON.stringify(task));
       this.impTask = JSON.parse(this.lStorage.getItem('impTask'));
     }
+
+    this.deletedTask.push(deletedTask);
+    this.lStorage.setItem('deletedTask',JSON.stringify(this.deletedTask));
+    this.deletedTask = JSON.parse(this.lStorage.getItem('deletedTask'));
   }
 
+  // Function which deleted all task from specified task list
   allTaskDelete(arrayType: string) {
 
-    if(arrayType === "delete") {
+    if(arrayType === "important") {
       this.lStorage.setItem('impTask',JSON.stringify([]));
       this.impTask = JSON.parse(this.lStorage.getItem('impTask'));
+    }
+
+    if(arrayType === "delete") {
+      this.lStorage.setItem('deletedTask',JSON.stringify([]));
+      this.deletedTask = JSON.parse(this.lStorage.getItem('deletedTask'));
     }
 
   }

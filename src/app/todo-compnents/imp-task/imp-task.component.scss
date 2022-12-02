@@ -81,17 +81,20 @@
     height: 80vh;
     overflow: scroll;
     display: flex;
+    //justify-content: space-between;
     flex-wrap: wrap;
     //justify-content: space-between;
-    column-gap: 6%;
+    column-gap: 7.69%;
     row-gap: 3%;
-
+    overflow-x: hidden;
     box-sizing: border-box;
     margin-top: 20px;
-    column-count: 6;
+    // column-count: 6;
+    border: 2px solid red;
+
 
     .imp-task-card {
-      width: 300px;
+      width: 280px;
       height: 250px;
       overflow-wrap: break-word;
       display: flex;

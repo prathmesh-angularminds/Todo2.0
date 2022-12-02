@@ -3,9 +3,43 @@
     <div class="del-task-title">
       {{ "Delete Task" | uppercase }}
     </div>
-    <div class="del-task-delete-btn">
+    <div class="del-task-delete-btn" (click)="deleteAll()">
       <img src="../../../assets/delete-btn-img.svg" alt="delete-btn" />
     </div>
   </div>
-  <div class="del-task-list"></div>
+  <div class="del-task-list">
+    <div class="del-task-card" *ngFor="let cards of delTask; let i = index">
+      <div class="task-card-title">
+        <div>{{ cards["taskTitle"] }}</div>
+        <img src="../../../assets/imp-btn-img.svg" />
+      </div>
+      <div class="task-card-desc">{{ cards["taskDesc"] }}</div>
+      <div class="task-card-time">
+        <div>From-{{ cards["startTime"] }}</div>
+        <div>Till-{{ cards["endTime"] }}</div>
+      </div>
+      <div class="task-card-btns">
+        <div
+          class="optional-div"
+          *ngIf="cards['optionBtn']"
+          style="user-select: none"
+        >
+          <a
+            style="width: 100%; text-decoration: none"
+            [routerLink]="'/add-task'"
+            (onclick)="updateTask()"
+            ><div class="">Update Task</div></a
+          >
+          <div class="disable" style="opacity: 0.5">Delete Task</div>
+        </div>
+        <div
+          class="task-card-option-btn"
+          style="cursor: pointer"
+          (click)="showOption(i)"
+        >
+          <img src="../../../assets/option-btn.svg" />
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

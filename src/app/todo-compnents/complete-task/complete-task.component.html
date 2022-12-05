@@ -3,9 +3,51 @@
     <div class="comp-task-title">
       {{ "Completed Task" | uppercase }}
     </div>
-    <div class="comp-task-delete-btn">
+    <div class="comp-task-delete-btn" (click)="deleteAll()">
       <img src="../../../assets/delete-btn-img.svg" alt="delete-btn" />
     </div>
   </div>
-  <div class="comp-task-list"></div>
+  <div class="comp-task-list">
+    <div class="comp-task-card" *ngFor="let cards of compTask; let i = index">
+      <div class="task-card-title">
+        <div>{{ cards["taskTitle"] }}</div>
+        <img *ngIf="cards.isImp" src="../../../assets/imp-btn-img.svg" />
+      </div>
+      <div class="task-card-desc">{{ cards["taskDesc"] }}</div>
+      <div *ngIf="cards.isCompleted === false" class="task-card-time">
+        <div>From-{{ cards["startTime"] }}</div>
+        <div>Till-{{ cards["endTime"] }}</div>
+      </div>
+      <div
+        *ngIf="cards.isCompleted"
+        class="task-card-completed"
+        style="width: 100%"
+      >
+        Task is Completed
+      </div>
+      <div class="task-card-btns">
+        <div
+          class="optional-div"
+          *ngIf="cards['optionBtn']"
+          style="user-select: none"
+        >
+          <a
+            style="width: 100%; text-decoration: none"
+            [routerLink]="'/add-task'"
+            [state]="{cards}"
+            (click)="onTaskUpdate(i)"
+            ><div>Update Task</div></a
+          >
+          <div (click)="onCompTaskDelete(i)">Delete Task</div>
+        </div>
+        <div
+          class="task-card-option-btn"
+          style="cursor: pointer"
+          (click)="showOption(i)"
+        >
+          <img src="../../../assets/option-btn.svg" />
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

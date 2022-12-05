@@ -10,11 +10,6 @@ import { ImpTaskComponent } from './imp-task/imp-task.component';
 
 const routes : Routes = [
   {
-    path: '',
-    component: AllTaskComponent,
-    pathMatch: 'prefix'
-  },
-  {
     path: 'add-task',
     component: AddTaskComponent,
   },
@@ -27,7 +22,7 @@ const routes : Routes = [
     component: CompleteTaskComponent,
   },
   {
-    path: 'important-task',
+    path: '',
     component: ImpTaskComponent,
   }
 ]

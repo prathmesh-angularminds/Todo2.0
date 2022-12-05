@@ -90,7 +90,7 @@
     box-sizing: border-box;
     margin-top: 20px;
     // column-count: 6;
-    border: 2px solid red;
+    // border: 2px solid red;
 
 
     .imp-task-card {
@@ -163,6 +163,20 @@
         align-self: center;
       }
 
+      .task-progress {
+
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        
+        progress {
+
+          box-sizing: border-box;
+          margin: 10px 0px; 
+        }
+
+      }
+
       .task-card-btns {
 
         width: 100%;
@@ -208,6 +222,26 @@
             cursor: pointer;
             //border: 2px solid red;
           }
+        }
+      }
+      .meter { 
+        height: 8px !important;  
+        position: relative;
+        background: white;
+        border-radius: 50px;
+        //padding: 10px;
+        box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+
+        box-sizing: border-box;
+        margin: 10px 0px;
+
+        span {
+          display: block;
+          height: 100%;
+          border-radius: 50px;
+          background-color: #b69ef0;
+          position: relative;
+          overflow: hidden;
         }
       }
     }

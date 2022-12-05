@@ -1,120 +1,144 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
-export class TodoserviceService {
+export class TodoserviceService { 
+  // Local Storage Variables
   lStorage: any = localStorage;
   newTask: object;
-  normalTask: object[];
-  impTask: object[];
+  allTask: object[];
   completedTask: object[];
   deletedTask: object[];
 
-  
-
   constructor() {
-    if (this.lStorage.getItem('normalTask') === null) {
-      this.lStorage.setItem('normalTask', JSON.stringify([]));
-      this.normalTask = JSON.parse(this.lStorage.getItem('normalTask'));
+
+    if (this.lStorage.getItem("allTask") === null) {
+      this.lStorage.setItem("allTask", JSON.stringify([]));
+      this.allTask = JSON.parse(this.lStorage.getItem("allTask"));
     } else {
-      this.normalTask = JSON.parse(this.lStorage.getItem('normalTask'));
+      this.allTask = JSON.parse(this.lStorage.getItem("allTask"));
     }
 
-    if (this.lStorage.getItem('impTask') === null) {
-      this.lStorage.setItem('impTask', JSON.stringify([]));
-      this.impTask = JSON.parse(this.lStorage.getItem('impTask'));
+    if (this.lStorage.getItem("completedTask") === null) {
+      this.lStorage.setItem("completedTask", JSON.stringify([]));
+      this.completedTask = JSON.parse(this.lStorage.getItem("completedTask"));
     } else {
-      this.impTask = JSON.parse(this.lStorage.getItem('impTask'));
+      this.completedTask = JSON.parse(this.lStorage.getItem("completedTask"));
     }
 
-    if (this.lStorage.getItem('completedTask') === null) {
-      this.lStorage.setItem('completedTask', JSON.stringify([]));
-      this.completedTask = JSON.parse(this.lStorage.getItem('completedTask'));
+    if (this.lStorage.getItem("deletedTask") === null) {
+      this.lStorage.setItem("deletedTask", JSON.stringify([]));
+      this.deletedTask = JSON.parse(this.lStorage.getItem("deletedTask"));
     } else {
-      this.completedTask = JSON.parse(this.lStorage.getItem('completedTask'));
-    }
-
-    if (this.lStorage.getItem('deletedTask') === null) {
-      this.lStorage.setItem('deletedTask', JSON.stringify([]));
-      this.deletedTask = JSON.parse(this.lStorage.getItem('deletedTask'));
-    } else {
-      this.deletedTask = JSON.parse(this.lStorage.getItem('deletedTask'));
+      this.deletedTask = JSON.parse(this.lStorage.getItem("deletedTask"));
     }
   }
 
-  sortData(task: any[],newTask: any) {
-
-    var demo: (any)[] = [];
+  // Sorting Data
+  sortData(taskList: any[], newTask: any) {
+    var newTaskList: any[] = [];
     var hrs1: number;
     var hrs2: number;
+    var index = -1;
+    var mins1: number;
+    var mins2: number;
+    
+    if (taskList.length === 0) {
+    newTaskList.push(newTask);
+  } else {
+    for (var i = 0; i < taskList.length; i++) {
 
-    if(task.length === 0) {
-      task.push(newTask);
+      hrs1 = parseInt(taskList[i].startTime.charAt(0) + taskList[i].startTime.charAt(1));
+      hrs2 = parseInt(newTask.startTime.charAt(0) + newTask.startTime.charAt(1));
+      mins1 = parseInt(taskList[i].startTime.charAt(3) + taskList[i].startTime.charAt(4));
+      mins2 = parseInt(newTask.startTime.charAt(3) + newTask.startTime.charAt(4));
+
+      if (hrs1 > hrs2) {
+
+        newTaskList.push(newTask);
+        index = i;
+        break;
+
+      } else if(hrs1 < hrs2) {
+
+        newTaskList.push(taskList[i]);
+        index = -1;
+        continue;
+      
+      }else if(hrs1 == hrs2) {
+
+         if (mins1 >= mins2) {
+           newTaskList.push(newTask);
+           index = i;
+           break;
+         } else {
+           newTaskList.push(taskList[i]);
+           index = -1;
+           continue;
+         }
+      }
+
+      newTaskList.push(taskList[i]);
+    }
+
+    if (index === -1) {
+      newTaskList.push(newTask);
     } else {
-
-      for(var i = 0; i < task.length; i++) {
-        var demoTask = task[i];
-        hrs1 = parseInt(demoTask.startTime.charAt(0) + "" +demoTask.startTime.charAt(0))
-        hrs2 = parseInt(newTask.startTime.charAt(0) + "" +newTask.startTime.charAt(0)) 
-        
-        if(hrs1 > hrs2) {
-          demoTask.push(task)  
-        }
-
+      for (var i = index; i < taskList.length; i++) {
+        newTaskList.push(taskList[i]);
       }
     }
   }
 
-  // add new task in normal list or important list
-  addNewTask(newTask: any) {
-    this.newTask = newTask;
-    console.log(newTask.isImp);
-    
-    if (newTask.isImp) {
-      //this.sortData(this.impTask,newTask);
-      this.impTask.push(newTask);
-
-      this.lStorage.setItem('impTask', JSON.stringify(this.impTask));
-      this.impTask = JSON.parse(this.lStorage.getItem('impTask'));
-
-      console.log(this.impTask);
-    } else {
-      //this.sortData(this.impTask,newTask);
-      this.normalTask.push(newTask);
-      this.lStorage.setItem('normalTask', JSON.stringify(this.normalTask));
-      this.normalTask = JSON.parse(this.lStorage.getItem('normalTask'));
-
-      console.log(this.normalTask);
-    }
+    return newTaskList;
   }
 
+  // add new task in normal list or important list
+  addNewTask(newTask: any) {
+    
+    this.lStorage.setItem("allTask", JSON.stringify(this.sortData(this.allTask,newTask)));
+    this.allTask = JSON.parse(this.lStorage.getItem("allTask"));
+    console.log(this.allTask)
+
+  }
 
   // function which deleted specified task from the list
-  deleteTask(task: (object)[],arrayType: string,deletedTask: (object)[]) {
-    
-    if(arrayType === "important") {
-      this.lStorage.setItem('impTask',JSON.stringify(task));
-      this.impTask = JSON.parse(this.lStorage.getItem('impTask'));
+  deleteTask(task: object[], arrayType: string, deletedTask: object[]) {
+    if (arrayType === "all") {
+      this.lStorage.setItem("allTask", JSON.stringify(task));
+      this.allTask = JSON.parse(this.lStorage.getItem("allTask"));
+    } else if(arrayType === "completed") {
+      this.lStorage.setItem("completedTask", JSON.stringify(task));
+      this.completedTask = JSON.parse(this.lStorage.getItem("completedTask"));
     }
 
     this.deletedTask.push(deletedTask);
-    this.lStorage.setItem('deletedTask',JSON.stringify(this.deletedTask));
-    this.deletedTask = JSON.parse(this.lStorage.getItem('deletedTask'));
+    this.lStorage.setItem("deletedTask", JSON.stringify(this.deletedTask));
+    this.deletedTask = JSON.parse(this.lStorage.getItem("deletedTask"));
   }
 
   // Function which deleted all task from specified task list
   allTaskDelete(arrayType: string) {
+    if (arrayType === "all") {
+      this.lStorage.setItem("allTask", JSON.stringify([]));
+      this.allTask = JSON.parse(this.lStorage.getItem("allTask"));
 
-    if(arrayType === "important") {
-      this.lStorage.setItem('impTask',JSON.stringify([]));
-      this.impTask = JSON.parse(this.lStorage.getItem('impTask'));
+    } else if (arrayType === "delete") {
+      this.lStorage.setItem("deletedTask", JSON.stringify([]));
+      this.deletedTask = JSON.parse(this.lStorage.getItem("deletedTask"));
+    } else if(arrayType === "completed") {
+      this.lStorage.setItem("completedTask", JSON.stringify([]));
+      this.completedTask = JSON.parse(this.lStorage.getItem("completedTask"));
     }
+  }
 
-    if(arrayType === "delete") {
-      this.lStorage.setItem('deletedTask',JSON.stringify([]));
-      this.deletedTask = JSON.parse(this.lStorage.getItem('deletedTask'));
-    }
-
+  addToCompleted(newTask: (object)[]) {
+    
+    this.completedTask.push(newTask);
+    this.lStorage.setItem("completedTask", JSON.stringify(this.completedTask));
+    this.completedTask = JSON.parse(this.lStorage.getItem("completedTask"));
+  
+    console.log(this.completedTask);
   }
 }

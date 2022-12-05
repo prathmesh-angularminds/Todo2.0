@@ -43,6 +43,16 @@
             >Enter Task Description</label
           >
         </div>
+        <div
+          class="task-title-must"
+          style="margin: 10px 0px"
+          *ngIf="
+            formData.get('taskDesc')?.touched &&
+            formData.get('taskDesc')?.hasError('required')
+          "
+        >
+          Task Description is required
+        </div>
       </form>
 
       <div class="add-time-complete-block">
@@ -64,6 +74,7 @@
                 >
                   <img src="../../../assets/down-btn.svg" />
                 </div>
+                <div style="color: white; font-weight: 400; opacity: 0.8;">{{'Hrs' | lowercase}}</div>
               </div>
               <div class="add-mins-block">
                 <div
@@ -79,8 +90,11 @@
                 >
                   <img src="../../../assets/down-btn.svg" />
                 </div>
+                <div style="color: white; font-weight: 400; opacity: 0.8;">{{'Mins' | lowercase}}</div>
               </div>
-              <div class="am-pm-block">
+              
+              <!--  Time Zone -->
+              <!-- <div class="am-pm-block">
                 <div class="time-zone">
                   <input
                     name="zone1"
@@ -99,7 +113,7 @@
                   />
                   PM
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
 
@@ -120,6 +134,7 @@
                 >
                   <img src="../../../assets/down-btn.svg" />
                 </div>
+                <div style="color: white; font-weight: 400; opacity: 0.8;">{{'Hrs' | lowercase}}</div>
               </div>
               <div class="add-mins-block">
                 <div
@@ -135,8 +150,9 @@
                 >
                   <img src="../../../assets/down-btn.svg" />
                 </div>
+                <div style="color: white; font-weight: 400; opacity: 0.8;">{{'Mins' | lowercase}}</div>
               </div>
-              <div class="am-pm-block">
+              <!-- <div class="am-pm-block">
                 <div class="time-zone">
                   <input
                     name="zone2"
@@ -155,7 +171,7 @@
                   />
                   PM
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -168,7 +184,11 @@
           >
             <img src="../../../assets/imp-btn-img.svg" />
           </div>
-          <div (click)="onFormSubmit()" title="Add Task" class="completed1-btn isDisable">
+          <div
+            (click)="onFormSubmit()"
+            title="Add Task"
+            class="completed1-btn isDisable"
+          >
             <img src="../../../assets/completed-btn-img.svg" />
           </div>
         </div>
@@ -176,36 +196,13 @@
 
       <!-- Time Messages Block -->
       <div
+        id="timing-msg1"
         class="timing-msg"
         style="color: white"
-        *ngIf="
-          parseIntDemo(currentHr) > parseIntDemo(startTimeHr) ||
-          (currentDate.getHours() > 12 && startZone === 'AM') ||
-          (currentDate.getHours() <= 12 && startZone === 'PM') ||
-          currentDate.getMinutes() > parseIntDemo(startTimeMin)
-        "
-      >
-        Task Starting Hrs should be more than Current time
+      > 
       </div>
-      <div
-        class="timing-msg"
-        style="color: white"
-        *ngIf="
-          parseIntDemo(currentHr) > parseIntDemo(endTimeHr) ||
-          (currentDate.getHours() > 12 && endZone === 'AM') ||
-          (currentDate.getHours() <= 12 && endZone === 'PM') ||
-          currentDate.getMinutes() > parseIntDemo(endTimeMin)
-        "
-      >
-        Task Ending Time should be more than Current time
-      </div>
-
-      <div
-        style="color: white"
-        *ngIf="parseIntDemo(startTimeHr) > parseIntDemo(endTimeHr)"
-      >
-        Task Starting time should be more than Task Ending Time
-    </div>
+      
+    
     </div>
   </div>
 </div>

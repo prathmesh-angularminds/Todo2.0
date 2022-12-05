@@ -34,8 +34,12 @@ export class DeleteTaskComponent implements OnInit {
     this.service.allTaskDelete("delete");
   }
 
-  updateTask() {
+  onTaskUpdate(index: number) {
     
+    this.delTask[index].optionBtn = false;
+    this.delTask.splice(index,1);
+    this.service.lStorage.setItem("deletedTask",JSON.stringify(this.delTask));
+    this.delTask = JSON.parse(this.service.lStorage.getItem("deletedTask"));
   }
 
 }

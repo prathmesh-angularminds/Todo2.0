@@ -11,27 +11,45 @@
   <!-- <div class="imp-task-search-block">
     <input placeholder="Search by task title" />
   </div> -->
-  <div class="imp-task-list">
+  <div class="imp-task-list" *ngIf="allTask.length !== 0">
     <div class="imp-task-card" *ngFor="let cards of allTask; let i = index">
       <div class="task-card-title">
         <div>{{ cards["taskTitle"] }}</div>
-        <img *ngIf="cards.isImp" src="../../../assets/imp-btn-img.svg" />        
+        <img *ngIf="cards.isImp" src="../../../assets/imp-btn-img.svg" />
       </div>
       <div class="task-card-desc">{{ cards["taskDesc"] }}</div>
       <div class="task-card-time">
         <div>From-{{ cards["startTime"] }}</div>
         <div>Till-{{ cards["endTime"] }}</div>
       </div>
-      <div class="task-progress" style="width: 100%" *ngIf="currentTime.getHours() > parseIntDemo(cards.startTime.charAt(0) + cards.startTime.charAt(0))">
+      <div
+        class="task-progress"
+        style="width: 100%"
+        *ngIf="
+          currentTime.getHours() >
+          parseIntDemo(cards.startTime.charAt(0) + cards.startTime.charAt(0))
+        "
+      >
         <div class="meter">
-          <span style="width: 25%" [ngStyle]="{width: cards.completitionTime.precentage}"></span>
+          <span
+            style="width: 25%"
+            [ngStyle]="{ width: cards.completitionTime.precentage + '%' }"
+          ></span>
         </div>
-        <div class="percentage">{{ cards.completitionTime.minuteCounter }} Mins Remaining</div> 
+        <div class="percentage">
+          {{ cards.completitionTime.minuteCounter }} Mins Remaining
+        </div>
       </div>
       <div class="task-card-btns">
         <div class="optional-div" *ngIf="cards['optionBtn']">
           <div class="" (click)="addToCompleted(i)">Mark as Completed</div>
-          <a style="width: 100%; text-decoration: none;" [routerLink]="'/add-task'" [state]="{cards}" (click)="onTaskUpdate(i)"><div class="">Update Task</div></a>
+          <a
+            style="width: 100%; text-decoration: none"
+            [routerLink]="'/add-task'"
+            [state]="{cards}"
+            (click)="onTaskUpdate(i)"
+            ><div class="">Update Task</div></a
+          >
           <div class="" (click)="onImpTaskDelete(i)">Delete Task</div>
         </div>
         <div
@@ -42,6 +60,16 @@
           <img src="../../../assets/option-btn.svg" />
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="imp-task-list1" id="demo" *ngIf="allTask.length === 0">
+    <div class="data-not-found-card">
+      <iframe
+        src="https://embed.lottiefiles.com/animation/96253"
+        height="300"
+      ></iframe>
+      No Task Present
     </div>
   </div>
 </div>

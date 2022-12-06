@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { TodoserviceService } from "src/app/services/todoservice.service";
-
+import Lottie from "lottie-web";
 @Component({
   selector: "app-imp-task",
   templateUrl: "./imp-task.component.html",

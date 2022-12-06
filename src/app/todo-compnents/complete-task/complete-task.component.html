@@ -7,7 +7,7 @@
       <img src="../../../assets/delete-btn-img.svg" alt="delete-btn" />
     </div>
   </div>
-  <div class="comp-task-list">
+  <div class="comp-task-list" *ngIf="compTask.length !== 0">
     <div class="comp-task-card" *ngFor="let cards of compTask; let i = index">
       <div class="task-card-title">
         <div>{{ cards["taskTitle"] }}</div>
@@ -48,6 +48,15 @@
           <img src="../../../assets/option-btn.svg" />
         </div>
       </div>
+    </div>
+  </div>
+  <div class="imp-task-list1" id="demo" *ngIf="compTask.length === 0">
+    <div class="data-not-found-card">
+      <iframe
+        src="https://embed.lottiefiles.com/animation/96253"
+        height="300"
+      ></iframe>
+      No Task Present
     </div>
   </div>
 </div>

@@ -30,6 +30,27 @@
         >
           Task Title must be given
         </div>
+        <!-- <ng-template #validation1 >
+          <div
+          class="task-title-must"
+          *ngIf="
+          formData.get('taskTitle')?.touched && formData.get('taskTitle')?.hasError('minlength')
+          ; else validation2"
+        >
+          Increase size of Task Title
+        </div>
+        </ng-template>
+        <ng-template #validation2>
+          <div
+          class="task-title-must"
+          *ngIf="
+          formData.get('taskTitle')?.touched &&formData.get('taskTitle')?.hasError('maxlength')
+          "
+        >
+          Increase size of Task Title
+        </div>
+        </ng-template> -->
+        
         <div class="form-floating textarea-block">
           <textarea
             class="form-control textarea"
